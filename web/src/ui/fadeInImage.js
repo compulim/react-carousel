@@ -27,10 +27,11 @@ export default class FadeInImage extends React.Component {
     const { pixelRatio } = props;
     const height = this._nativeHeight / pixelRatio;
     const width = this._nativeWidth / pixelRatio;
+    const boxWidth = width * (this._animating(props, 'slide') ? .9 : 1);
 
-    $(this.refs.box).css({ height, width: width * (this._animating(props, 'slide') ? .9 : 1) });
+    $(this.refs.box).css({ height, boxWidth });
     $(this.refs.image).css({ height, width });
-    props.onLoad(width, height);
+    props.onLoad(boxWidth, height);
   }
 
   _animating(props, animation) {
@@ -55,9 +56,9 @@ export default class FadeInImage extends React.Component {
           opacity: 1
         },
         {
+          complete: this.props.onShow,
           duration: this.props.duration
-        },
-        this.props.onShow
+        }
       );
   }
 
