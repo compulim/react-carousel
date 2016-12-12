@@ -74,10 +74,11 @@ import Carousel from './ui/carousel';
 //   }
 // }
 
-$.fn.reactCarousel = function (imageURLs, options = { interval: undefined, pixelRatio: undefined }) {
+$.fn.reactCarousel = function (imageURLs, options = { animation: undefined, interval: undefined, pixelRatio: undefined }) {
   return $.each(this, (index, element) => {
     render(
       <Carousel
+        animation={ options.animation }
         imageURLs={ imageURLs }
         pixelRatio={ options.pixelRatio }
         slideShowInterval={ options.interval }

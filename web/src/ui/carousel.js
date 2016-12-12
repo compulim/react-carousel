@@ -178,7 +178,8 @@ export default class Carousel extends React.Component {
 
               return (
                 <FadeInImage
-                  animation={ image.animation }
+                  animation={ this.props.animation }
+                  duration={ image.animation === false ? 0 : undefined }
                   key={ image.changeID }
                   onLoad={ this.handleFadeInImageLoad.bind(this, url) }
                   onShow={ this.handleFadeInImageShow.bind(this, image.changeID) }
@@ -211,6 +212,7 @@ Carousel.defaultProps = {
 };
 
 Carousel.propTypes = {
+  animation        : PropTypes.string,
   className        : PropTypes.string,
   id               : PropTypes.string,
   imageURLs        : PropTypes.arrayOf(PropTypes.string).isRequired,
