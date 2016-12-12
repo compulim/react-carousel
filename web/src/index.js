@@ -1,6 +1,6 @@
 'use strict';
 
-// import React, { Component } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 
 import Carousel from './ui/carousel';
@@ -74,11 +74,12 @@ import Carousel from './ui/carousel';
 //   }
 // }
 
-$.fn.reactCarousel = function (imageURLs, options = { interval: undefined }) {
+$.fn.reactCarousel = function (imageURLs, options = { interval: undefined, pixelRatio: undefined }) {
   return $.each(this, (index, element) => {
     render(
       <Carousel
-        images={ imageURLs }
+        imageURLs={ imageURLs }
+        pixelRatio={ options.pixelRatio }
         slideShowInterval={ options.interval }
       />,
       element

@@ -124,8 +124,9 @@ module.exports = function (gulp) {
     gutil.log('[build:rollup]', 'Bundling with entrypoints:', ROLLUP_CONFIG.entry);
 
     const { SOURCE_MAP: sourceMap } = process.env;
+    const outputFilename = path.basename(ROLLUP_CONFIG.dest);
 
-    let workflow = rollup(Object.assign({}, ROLLUP_CONFIG, { sourceMap })).pipe(source('bundle.js'));
+    let workflow = rollup(Object.assign({}, ROLLUP_CONFIG, { sourceMap })).pipe(source(outputFilename));
 
     sourceMap && gutil.log('[build:rollup]', 'Source map is enabled, this build should not be used for production');
 

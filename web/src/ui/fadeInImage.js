@@ -13,12 +13,36 @@ export default class FadeInImage extends React.Component {
     this.handleLoad = this.handleLoad.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    nextProps.pixelRatio !== this.pixelRatio
+    && this._loaded
+    && this._setPixelRatio(nextProps);
+  }
+
+  _setPixelRatio(props) {
+    const { pixelRatio } = props;
+    const height = this._nativeHeight / pixelRatio;
+    const width = this._nativeWidth / pixelRatio;
+
+    $(this.refs.image).css({ height, width });
+    props.onLoad(width, height);
+  }
+
   handleLoad() {
-    $(this.refs.image).animate(
+    const $image = $(this.refs.image);
+
+    this._nativeHeight = $image.height();
+    this._nativeWidth = $image.width();
+    this._setPixelRatio(this.props);
+
+    $image.animate(
       {
         opacity: 1
       },
-      () => this.props.onLoad(this.props.src)
+      {
+        duration: this.props.animation ? 1000 : 0
+      },
+      this.props.onShow
     );
   }
 
@@ -35,10 +59,16 @@ export default class FadeInImage extends React.Component {
 }
 
 FadeInImage.defaultProps = {
-  onLoad: () => 0
+  animation : 'fade',
+  onLoad    : () => 0,
+  onShow    : () => 0,
+  pixelRatio: 1
 };
 
 FadeInImage.propTypes = {
-  onLoad: PropTypes.func,
-  src: PropTypes.string.isRequired
+  animation : PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  onLoad    : PropTypes.func,
+  onShow    : PropTypes.func,
+  pixelRatio: PropTypes.number,
+  src       : PropTypes.string.isRequired
 };
