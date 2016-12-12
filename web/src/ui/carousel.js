@@ -3,9 +3,9 @@
 import React, { PropTypes } from 'react';
 import FadeInImage from './fadeInImage';
 
-import './carousel.less';
-
 const DEFAULT_SLIDE_SHOW_INTERVAL = 3000;
+const PREFETCHING_STYLE = { opacity: 0, position: 'absolute' };
+const SHOWING_STYLE = { position: 'relative' };
 
 export default class Carousel extends React.Component {
   constructor(props) {
@@ -166,12 +166,12 @@ export default class Carousel extends React.Component {
 
     return (
       <div
-        className={ 'react-carousel ' + (this.props.className || '') }
+        className={ this.props.className }
         id={ this.props.id }
         ref="carousel"
         style={ style }
       >
-        <div className="showing" ref="showing">
+        <div ref="showing" style={ SHOWING_STYLE }>
           {
             this.state.showing.map(image => {
               const url = this.props.imageURLs[image.imageIndex];
@@ -193,10 +193,10 @@ export default class Carousel extends React.Component {
         {
           this.state.prefetchingURL &&
             <img
-              className="prefetching"
               onError={ this.handlePrefetchError }
               onLoad={ this.handlePrefetchLoaded }
               src={ this.state.prefetchingURL }
+              style={ PREFETCHING_STYLE }
             />
         }
       </div>

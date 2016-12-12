@@ -3,7 +3,8 @@
 import React, { PropTypes } from 'react';
 
 const INITIAL_BOX_STYLE = {
-  overflow: 'hidden'
+  overflow: 'hidden',
+  position: 'absolute'
 };
 
 const INITIAL_IMAGE_STYLE = {
@@ -29,7 +30,7 @@ export default class FadeInImage extends React.Component {
     const width = this._nativeWidth / pixelRatio;
     const boxWidth = width * (this._animating(props, 'slide') ? .9 : 1);
 
-    $(this.refs.box).css({ height, boxWidth });
+    $(this.refs.box).css({ height, width: boxWidth });
     $(this.refs.image).css({ height, width });
     props.onLoad(boxWidth, height);
   }
@@ -65,7 +66,6 @@ export default class FadeInImage extends React.Component {
   render() {
     return (
       <div
-        className="fade-in-image"
         ref="box"
         style={ INITIAL_BOX_STYLE }
       >
