@@ -2,7 +2,6 @@
 
 import React, { PropTypes } from 'react';
 import FadeInImage from './fadeInImage';
-import classNames from 'classnames';
 
 import './carousel.less';
 
@@ -165,11 +164,9 @@ export default class Carousel extends React.Component {
       this.props.style
     );
 
-    const { className } = this.props;
-
     return (
       <div
-        className={ classNames({ 'react-carousel': 1, [className]: className }) }
+        className={ 'react-carousel ' + (this.props.className || '') }
         id={ this.props.id }
         ref="carousel"
         style={ style }
