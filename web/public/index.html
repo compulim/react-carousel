@@ -8,6 +8,18 @@
   </head>
   <body>
     <div id="reactRoot"></div>
-    <script type="text/javascript" src="/dist/bundle.js"></script>
+    <script type="text/javascript" src="/common/js/shopping/react-carousel-0.0.1.js"></script>
+    <script type="text/javascript">
+    !function ($) {
+      'use strict';
+
+      $('#reactRoot').reactCarousel([
+        'img/1.jpg',
+        'img/2.jpg',
+        'img/3.jpg',
+        'img/4.jpg'
+      ]);
+    }(window.jQuery);
+    </script>
   </body>
 </html>

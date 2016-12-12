@@ -20,7 +20,7 @@ export default class Carousel extends React.Component {
     this.handlePrefetchLoaded = this.handlePrefetchLoaded.bind(this);
 
     this.state = {
-      prefetchingURL: this.props.images[0],
+      prefetchingURL: this.props.imageURLs[0],
       showing: [{
         changeID: 0,
         imageIndex: props.initialValue
@@ -29,7 +29,7 @@ export default class Carousel extends React.Component {
   }
 
   _nextPrefetchURL(props = this.props) {
-    return props.images.find(url => !~this._prefetchedURLs.indexOf(url) && !~this._prefetchFailedURLs.indexOf(url));
+    return props.imageURLs.find(url => !~this._prefetchedURLs.indexOf(url) && !~this._prefetchFailedURLs.indexOf(url));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -79,8 +79,8 @@ export default class Carousel extends React.Component {
   }
 
   _nextPrefetechedImageIndex(direction) {
-    const { images } = this.props;
-    const numImages = images.length;
+    const { imageURLs } = this.props;
+    const numImageURLs = imageURLs.length;
     const currentImage = this.state.showing[this.state.showing.length - 1];
     const currentImageIndex = currentImage && currentImage.imageIndex || 0;
     let nextImageIndex = currentImageIndex;
@@ -88,9 +88,9 @@ export default class Carousel extends React.Component {
     direction = Math.sign(direction);
 
     do {
-      nextImageIndex = (nextImageIndex + direction + numImages) % numImages;
+      nextImageIndex = (nextImageIndex + direction + numImageURLs) % numImageURLs;
 
-      if (~this._prefetchedURLs.indexOf(images[nextImageIndex])) {
+      if (~this._prefetchedURLs.indexOf(imageURLs[nextImageIndex])) {
         break;
       }
     } while (nextImageIndex !== currentImageIndex)
@@ -132,7 +132,7 @@ export default class Carousel extends React.Component {
               <FadeInImage
                 key={ image.changeID }
                 onLoad={ this.handleFadeInImageLoad.bind(this, image.changeID) }
-                src={ this.props.images[image.imageIndex] }
+                src={ this.props.imageURLs[image.imageIndex] }
               />
             )
           }
@@ -152,13 +152,13 @@ export default class Carousel extends React.Component {
 }
 
 Carousel.defaultProps = {
-  images: [],
+  imageURLs: [],
   initialValue: 0,
   slideShowInterval: DEFAULT_SLIDE_SHOW_INTERVAL
 };
 
 Carousel.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.string).isRequired,
+  imageURLs: PropTypes.arrayOf(PropTypes.string).isRequired,
   initialValue: PropTypes.number,
   slideShowInterval: PropTypes.number
 };

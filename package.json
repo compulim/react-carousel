@@ -1,5 +1,5 @@
 {
-  "name": "cnr-webpack-template",
+  "name": "react-carousel",
   "version": "0.0.1",
   "private": true,
   "license": "MIT",
@@ -43,6 +43,7 @@
     "express": "^4.14.0",
     "gulp": "^3.9.1",
     "gulp-command": "^0.1.2",
+    "gulp-filter": "^4.0.0",
     "gulp-htmlmin": "^2.0.0",
     "gulp-imagemin": "^3.0.3",
     "gulp-install": "^0.6.0",

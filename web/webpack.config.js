@@ -1,8 +1,9 @@
 'use strict';
 
+const packageJSON = require('../package.json');
 const path = require('path');
 
-const PUBLIC_PATH = 'dist/';
+const PUBLIC_PATH = 'common/js/shopping/';
 const OUTPUT_PATH = path.resolve(__dirname, '../dist/webpack/', PUBLIC_PATH);
 
 const
@@ -20,7 +21,7 @@ module.exports = {
     path.join(__dirname, 'src/index.js')
   ],
   output: {
-    filename: 'bundle.js',
+    filename: `react-carousel-${ packageJSON.version }.js`,
     path: OUTPUT_PATH,
     publicPath: `/${ PUBLIC_PATH }`
   },

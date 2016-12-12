@@ -4,10 +4,11 @@ const babel = require('rollup-plugin-babel');
 const commonjs = require('rollup-plugin-commonjs');
 const less = require('rollup-plugin-less');
 const nodeResolve = require('rollup-plugin-node-resolve');
+const packageJSON = require('../package.json');
 const replace = require('rollup-plugin-replace');
 
 module.exports['default'] = {
-  dest: 'dist/bundle.js',
+  dest: `common/js/shopping/react-carousel-${ packageJSON.version }.js`,
   entry: 'web/src/index.js',
   format: 'iife',
   plugins: [

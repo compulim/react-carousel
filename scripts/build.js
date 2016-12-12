@@ -3,6 +3,7 @@
 const buffer     = require('vinyl-buffer');
 const config     = require('./config');
 const del        = require('del');
+const gulpFilter = require('gulp-filter');
 const gutil      = require('gulp-util');
 const htmlmin    = require('gulp-htmlmin');
 const imagemin   = require('gulp-imagemin');
@@ -64,9 +65,13 @@ module.exports = function (gulp) {
   function buildContent() {
     gutil.log('[build:content]', `Copying content from ${ path.relative('.', config.WEB_CONTENT_SRC) } to ${ path.relative('.', CONTENT_DEST) }`);
 
+    const htmlFilter = gulpFilter(['*.html'], { restore: true });
+
     return gulp
       .src(config.WEB_CONTENT_SRC)
+      .pipe(htmlFilter)
       .pipe(htmlmin())
+      .pipe(htmlFilter.restore)
       .pipe(imagemin())
       .pipe(gulp.dest(CONTENT_DEST));
   }
@@ -122,7 +127,7 @@ module.exports = function (gulp) {
 
     let workflow = rollup(Object.assign({}, ROLLUP_CONFIG, { sourceMap })).pipe(source('bundle.js'));
 
-    sourceMap && gutil.log('[build:webpack]', 'Source map is enabled, this build should not be used for production');
+    sourceMap && gutil.log('[build:rollup]', 'Source map is enabled, this build should not be used for production');
 
     if (sourceMap) {
       workflow = workflow
@@ -131,7 +136,7 @@ module.exports = function (gulp) {
         .pipe(sourcemaps.write('.'));
     }
 
-    workflow.pipe(gulp.dest(ROLLUP_DEST));
+    return workflow.pipe(gulp.dest(ROLLUP_DEST));
   }
 };
 
