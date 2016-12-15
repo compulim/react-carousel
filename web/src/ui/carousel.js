@@ -4,8 +4,12 @@ import React, { PropTypes } from 'react';
 import FadeInImage from './fadeInImage';
 
 const DEFAULT_SLIDE_SHOW_INTERVAL = 3000;
-const PREFETCHING_STYLE = { opacity: 0, position: 'absolute' };
-const SHOWING_STYLE = { position: 'relative' };
+const PREFETCHING_STYLE = {
+  msFilter: '"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"',
+  opacity: 0,
+  position: 'absolute'
+};
+const SHOWING_STYLE = { position: 'relative', '-ms-filter': '"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"' };
 
 export default class Carousel extends React.Component {
   constructor(props) {
