@@ -1,7 +1,5 @@
 'use strict';
 
-import React, { PropTypes } from 'react';
-
 const INITIAL_BOX_STYLE = {
   overflow: 'hidden',
   position: 'absolute'
@@ -89,10 +87,10 @@ FadeInImage.defaultProps = {
 };
 
 FadeInImage.propTypes = {
-  animation : PropTypes.string,
-  duration  : PropTypes.number,
-  onLoad    : PropTypes.func,
-  onShow    : PropTypes.func,
-  pixelRatio: PropTypes.number,
-  src       : PropTypes.string.isRequired
+  animation : React.PropTypes.string,
+  duration  : React.PropTypes.number,
+  onLoad    : React.PropTypes.func,
+  onShow    : React.PropTypes.func,
+  pixelRatio: React.PropTypes.number,
+  src       : React.PropTypes.string.isRequired
 };

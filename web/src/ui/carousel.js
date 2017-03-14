@@ -1,6 +1,5 @@
 'use strict';
 
-import React, { PropTypes } from 'react';
 import FadeInImage from './fadeInImage';
 
 const DEFAULT_SLIDE_SHOW_INTERVAL = 3000;
@@ -216,12 +215,12 @@ Carousel.defaultProps = {
 };
 
 Carousel.propTypes = {
-  animation        : PropTypes.string,
-  className        : PropTypes.string,
-  id               : PropTypes.string,
-  imageURLs        : PropTypes.arrayOf(PropTypes.string).isRequired,
-  initialValue     : PropTypes.number,
-  pixelRatio       : PropTypes.number,
-  slideShowInterval: PropTypes.number,
-  style            : PropTypes.any
+  animation        : React.PropTypes.string,
+  className        : React.PropTypes.string,
+  id               : React.PropTypes.string,
+  imageURLs        : React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
+  initialValue     : React.PropTypes.number,
+  pixelRatio       : React.PropTypes.number,
+  slideShowInterval: React.PropTypes.number,
+  style            : React.PropTypes.any
 };

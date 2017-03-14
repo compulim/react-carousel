@@ -8,7 +8,7 @@ const packageJSON = require('../package.json');
 const replace = require('rollup-plugin-replace');
 
 module.exports['default'] = {
-  dest: `common/js/shopping/react-carousel-${ packageJSON.version }.js`,
+  dest: `js/bundle.js`,
   entry: 'web/src/index.js',
   format: 'iife',
   plugins: [

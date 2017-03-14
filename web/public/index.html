@@ -5,22 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/react@15.3.1/dist/react.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/react-dom@15.3.1/dist/react-dom.min.js"></script>
+    <script type="text/javascript" src="js/bundle.js"></script>
   </head>
   <body>
     <div id="reactRoot"></div>
-    <p>Hello, World!</p>
-    <script type="text/javascript" src="/common/js/shopping/react-carousel-0.0.1.js"></script>
     <script type="text/javascript">
-    !function ($) {
+    !function () {
       'use strict';
 
-      $('#reactRoot').reactCarousel([
-        'img/1.jpg',
-        'img/2.jpg',
-        'img/3.jpg',
-        'img/4.jpg'
-      ], { pixelRatio: 2 });
-    }(window.jQuery);
+      window.app.Landing();
+    }();
     </script>
   </body>
 </html>

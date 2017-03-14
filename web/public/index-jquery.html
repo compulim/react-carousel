@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+  </head>
+  <body>
+    <div id="reactRoot"></div>
+    <p>Hello, World!</p>
+    <button type="button" id="prevButton">Prev</button>
+    <button type="button" id="nextButton">Next</button>
+    <script type="text/javascript" src="/common/js/shopping/react-carousel-0.0.1.js"></script>
+    <script type="text/javascript">
+    !function ($) {
+      'use strict';
+
+      $('#reactRoot').reactCarousel([
+        'img/1.jpg',
+        'img/2.jpg',
+        'img/3.jpg',
+        'img/4.jpg'
+      ], { animation: 'fade', pixelRatio: 2, interval: false });
+
+      $('#prevButton').on('click', () => {
+        $('#reactRoot').reactCarousel('prev');
+      });
+
+      $('#nextButton').on('click', () => {
+        $('#reactRoot').reactCarousel('next');
+      });
+    }(window.jQuery);
+    </script>
+  </body>
+</html>

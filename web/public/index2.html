@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+  </head>
+  <body>
+    <div id="carousel" style="position: relative; height: 256px;">
+      <img src="/img/1.jpg" style="height: 256px; width: 963px;" />
+      <!--<img src="/img/2.jpg" style="height: 256px; position: absolute; left: 0; top: 0; width: 963px;" />-->
+    </div>
+    <button id="prevButton">Prev</button>
+    <button id="nextButton">Next</button>
+    <script type="text/javascript">
+    !function ($) {
+      'use strict';
+
+      let currentImageID = 1;
+
+      $('button#nextButton').on('click', () => go(1));
+      $('button#prevButton').on('click', () => go(-1));
+
+      function go(dir) {
+        if (dir > 0) {
+          currentImageID++;
+        } else {
+          currentImageID--;
+        }
+
+        if (currentImageID > 5) {
+          currentImageID = 1;
+        } else if (currentImageID < 1) {
+          currentImageID = 5;
+        }
+
+        const $nextImage = $(`<img src="/img/${ currentImageID }.jpg" style="height: 256px; position: absolute; left: 0; top: 0; width: 963px;" />`)
+          .appendTo($('#carousel'))
+          .css({ opacity: 0 })
+          .animate(
+            { opacity: 1 },
+            1000,
+            () => {
+              $nextImage.prevAll().remove();
+            }
+          );
+      }
+    }(window.jQuery);
+    </script>
+  </body>
+</html>
